@@ -1,0 +1,35 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: campus-db
+    restart: always
+    environment:
+      POSTGRES_DB: campus_booking
+      POSTGRES_USER: vikramsakethg
+      POSTGRES_PASSWORD: postgres   # ✅ FIXED
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./server
+    container_name: campus-backend
+    ports:
+      - "5001:5001"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: campus_booking
+      DB_USER: vikramsakethg
+      DB_PASSWORD: postgres   # ✅ MUST MATCH
+      JWT_SECRET: campus_booking_super_secret_key_2024
+    depends_on:
+      - db
+
+  frontend:
+    build: ./client
+    container_name: campus-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
