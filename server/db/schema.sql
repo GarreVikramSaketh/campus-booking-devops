@@ -1,7 +1,7 @@
 -- Campus Asset Booking System - Database Schema
 
-CREATE DATABASE IF NOT EXISTS campus_booking;
-\c campus_booking;
+-- ❌ REMOVE CREATE DATABASE
+-- ❌ REMOVE \c command
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS notifications (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
--- Seed admin user (password: Admin@1234)
+-- ✅ Seed admin user (password: Admin@1234)
 INSERT INTO users (name, email, password, role, net_id)
 VALUES (
   'Vijay Gupta',
@@ -75,7 +75,8 @@ VALUES (
   '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
   'admin',
   'vg0001'
-) ON CONFLICT DO NOTHING;
+)
+ON CONFLICT (email) DO NOTHING;
 
 -- Seed sample assets
 INSERT INTO assets (name, type, location, capacity) VALUES

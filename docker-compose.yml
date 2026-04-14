@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: campus_booking
       POSTGRES_USER: vikramsakethg
-      POSTGRES_PASSWORD: postgres   # ✅ FIXED
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
 
@@ -17,12 +17,13 @@ services:
     ports:
       - "5001:5001"
     environment:
-      DB_HOST: db
+      DB_HOST: db   # ✅ VERY IMPORTANT
       DB_PORT: 5432
       DB_NAME: campus_booking
       DB_USER: vikramsakethg
-      DB_PASSWORD: postgres   # ✅ MUST MATCH
+      DB_PASSWORD: postgres
       JWT_SECRET: campus_booking_super_secret_key_2024
+      PORT: 5001
     depends_on:
       - db
 
