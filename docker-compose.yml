@@ -17,7 +17,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      DB_HOST: db   # ✅ VERY IMPORTANT
+      DB_HOST: db   #  VERY IMPORTANT
       DB_PORT: 5432
       DB_NAME: campus_booking
       DB_USER: vikramsakethg
