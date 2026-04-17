@@ -25,6 +25,7 @@ pipeline {
                 fi
 
                 cd campus-booking-devops
+                git reset --hard
                 git pull
 
                 docker-compose down -v || true
